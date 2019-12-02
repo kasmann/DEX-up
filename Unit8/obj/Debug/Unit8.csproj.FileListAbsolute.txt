@@ -1,0 +1,5 @@
+D:\Аня\github\DexCourses\Unit8\bin\Debug\Unit8.exe
+D:\Аня\github\DexCourses\Unit8\bin\Debug\Unit8.pdb
+D:\Аня\github\DexCourses\Unit8\obj\Debug\Unit8.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\Unit8\obj\Debug\Unit8.exe
+D:\Аня\github\DexCourses\Unit8\obj\Debug\Unit8.pdb
