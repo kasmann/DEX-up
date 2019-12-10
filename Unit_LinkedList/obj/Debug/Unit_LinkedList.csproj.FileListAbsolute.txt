@@ -1,0 +1,5 @@
+D:\Аня\github\DexCourses\Unit_LinkedList\bin\Debug\Unit_LinkedList.exe
+D:\Аня\github\DexCourses\Unit_LinkedList\bin\Debug\Unit_LinkedList.pdb
+D:\Аня\github\DexCourses\Unit_LinkedList\obj\Debug\Unit_LinkedList.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\Unit_LinkedList\obj\Debug\Unit_LinkedList.exe
+D:\Аня\github\DexCourses\Unit_LinkedList\obj\Debug\Unit_LinkedList.pdb

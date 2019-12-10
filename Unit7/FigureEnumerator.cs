@@ -29,7 +29,7 @@ namespace Unit7
         {
             get
             {
-                if (_position == -1 || _position >= _figures.Length)
+                if (_position <= -1 || _position >= _figures.Length)
                 {
                     throw new IndexOutOfRangeException();
                 }
@@ -38,8 +38,8 @@ namespace Unit7
             }
         }
 
-        object IEnumerator.Current => throw new NotImplementedException();
-        
+        object IEnumerator.Current => Current;
+
         public void Reset()
         {
             _position = -1;
