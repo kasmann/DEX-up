@@ -1,0 +1,5 @@
+D:\Аня\github\DexCourses\Unit_DeepCloning\obj\Debug\Unit_DeepCloning.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\Unit_DeepCloning\bin\Debug\Unit_DeepCloning.exe
+D:\Аня\github\DexCourses\Unit_DeepCloning\bin\Debug\Unit_DeepCloning.pdb
+D:\Аня\github\DexCourses\Unit_DeepCloning\obj\Debug\Unit_DeepCloning.exe
+D:\Аня\github\DexCourses\Unit_DeepCloning\obj\Debug\Unit_DeepCloning.pdb
