@@ -7,6 +7,7 @@ namespace Unit12
     {
         public static void Main(string[] args)
         {
+            //дженерики в целом
             var discount1 = new Discount<None>("John Smith", new None());
             Discount<None>.DiscountOwnersCount++;
             
@@ -28,7 +29,41 @@ namespace Unit12
             
             Console.WriteLine($"Cards without discount: {Discount<None>.DiscountOwnersCount}");
             Console.WriteLine($"Cards with fixed discount sum: {Discount<FixedSum>.DiscountOwnersCount}");
-            Console.WriteLine($"Cards with percent discount: {Discount<Percent>.DiscountOwnersCount}");
+            Console.WriteLine($"Cards with percent discount: {Discount<Percent>.DiscountOwnersCount}\n");
+            
+            //уникальная коллекция
+            try
+            {
+                var unique = new UniqueCollection<string>(new[] {"first", "second", "third"});
+                unique.Add("second");
+            }
+            catch (NonUniqueValue ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var unique2 = new UniqueCollection<string>(new[] {"first", "second", "second"});
+            }
+            catch (NonUniqueValue ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            try
+            {
+                var perc10 = new Percent(10);
+                var perc15 = new Percent(15);
+                var fix100 = new FixedSum(100);
+                var none = new None();
+                var unique3 = new UniqueCollection<DiscountType>(new DiscountType[]{perc10, perc15, fix100, none});
+                unique3.Add(perc10);
+            }
+            catch (NonUniqueValue ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

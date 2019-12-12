@@ -68,6 +68,15 @@ namespace Unit10
             return true;
         }
 
+        public static bool operator ==(Person p1, Person p2)
+        {
+            return p1.Equals(p2);
+        }
+        
+        public static bool operator !=(Person p1, Person p2)
+        {
+            return !(p1.Equals(p2));
+        }
         public override int GetHashCode()
         {
             return (int) PassportID;

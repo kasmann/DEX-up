@@ -16,7 +16,7 @@ namespace Unit11
                 {new Person("Eric Carter", Convert.ToDateTime("06.03.1970"), "Long-Beach", 81), "RG Bicycles"},
                 {new Person("John Smith", Convert.ToDateTime("09.09.1999"), "Miami", 260), "Metropolitan Opera"}
             };
-
+            
             //цикл с выходом по нажатию Escape
             do
             {
