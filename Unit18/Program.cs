@@ -12,7 +12,7 @@ namespace Unit18
             Type triangle = null;
             try
             {
-                asm = Assembly.LoadFrom(@"D:/Аня/github/DexCourses/Unit9/bin/debug/Unit9.exe");
+                asm = Assembly.LoadFrom(@"Unit9.exe");
             }
             catch (FileNotFoundException e)
             {
