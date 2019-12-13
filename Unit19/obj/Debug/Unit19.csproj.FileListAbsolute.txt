@@ -1,0 +1,8 @@
+D:\Аня\github\DexCourses\Unit19\bin\Debug\Unit19.exe
+D:\Аня\github\DexCourses\Unit19\bin\Debug\Unit19.pdb
+D:\Аня\github\DexCourses\Unit19\bin\Debug\Newtonsoft.Json.dll
+D:\Аня\github\DexCourses\Unit19\bin\Debug\Newtonsoft.Json.xml
+D:\Аня\github\DexCourses\Unit19\obj\Debug\Unit19.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\Unit19\obj\Debug\Unit19.csproj.CopyComplete
+D:\Аня\github\DexCourses\Unit19\obj\Debug\Unit19.exe
+D:\Аня\github\DexCourses\Unit19\obj\Debug\Unit19.pdb

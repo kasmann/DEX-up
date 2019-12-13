@@ -29,12 +29,12 @@ namespace Unit9
 
         private bool SumChecked(double side1, double side2, double side3)
         {
-            return side1 < (side2 + side3);
+            return (side1 < (side2 + side3) && side2 <(side1 + side3) && side3 < (side1 + side2));
         }
         
         private bool DifferenceChecked(double side1, double side2, double side3)
         {
-            return side1 > (side2 - side3);
+            return (side1 > Math.Abs(side2 - side3) && side2 > Math.Abs(side1 - side3) && side3 > Math.Abs(side2 - side1));
         }
 
         public double Square()
