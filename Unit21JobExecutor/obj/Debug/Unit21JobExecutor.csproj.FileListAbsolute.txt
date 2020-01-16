@@ -1,0 +1,5 @@
+D:\Аня\github\DexCourses\Unit21JobExecutor\bin\Debug\Unit21JobExecutor.exe
+D:\Аня\github\DexCourses\Unit21JobExecutor\bin\Debug\Unit21JobExecutor.pdb
+D:\Аня\github\DexCourses\Unit21JobExecutor\obj\Debug\Unit21JobExecutor.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\Unit21JobExecutor\obj\Debug\Unit21JobExecutor.exe
+D:\Аня\github\DexCourses\Unit21JobExecutor\obj\Debug\Unit21JobExecutor.pdb
