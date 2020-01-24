@@ -8,50 +8,39 @@ namespace Unit21JobExecutor
         public static void Main(string[] args)
         {
             JobExecutor jobExecutor = new JobExecutor();
-            
+
             jobExecutor.Add(PrintHello);
             jobExecutor.Add(PrintWorking);
             jobExecutor.Add(PrintWorking);
             jobExecutor.Add(PrintWorking);
             jobExecutor.Add(PrintBye);
-            
+                        
             jobExecutor.Start(3);
-            Thread.Sleep(3000);
-            jobExecutor.Stop();
             
-            jobExecutor.Start(100);
-            Thread.Sleep(10000);
-            jobExecutor.Stop();
+            jobExecutor.Add(PrintWorking);
+            jobExecutor.Add(PrintBye);
             
-            jobExecutor.Start();
-            Thread.Sleep(1000);
-            jobExecutor.Stop();
+            jobExecutor.Add(PrintWorking);
+            jobExecutor.Start(5);
+            jobExecutor.Add(PrintHello);
+            jobExecutor.Add(PrintBye);
             
-            jobExecutor.Clear();
+            jobExecutor.Stop();
         }
 
         private static void PrintHello()
         {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine("hello " + i);
-            }
+            Console.WriteLine("Hello!");
         }
         
         private static void PrintWorking()
         {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine("working " + i);
-            }
+            Console.WriteLine("Working...");
         }
         
         private static void PrintBye()
         {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine("bye " + i);
-            }
+            Console.WriteLine("Bye!");
         }
     }
 }

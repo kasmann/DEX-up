@@ -131,10 +131,5 @@ namespace Unit_DeepCloning
         {
             return new Gender(Value);
         }
-
-        public string ToString()
-        {
-            return "some gender object with value " + Value;
-        }
     }
 }
