@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 namespace Unit21JobExecutor
@@ -54,10 +55,11 @@ namespace Unit21JobExecutor
 
         private void Work(object maxConcurrent)
         {
+            ThreadPool.SetMinThreads((int) maxConcurrent, (int) maxConcurrent);
+            ThreadPool.SetMaxThreads((int) maxConcurrent, (int) maxConcurrent);
+            
             while (true)
             {
-                for (var i = 0; i < (int)maxConcurrent; i++)
-                {
                     Action action = null;
 
                     lock (_locker)
@@ -72,14 +74,12 @@ namespace Unit21JobExecutor
 
                     if (action != null)
                     {
-                        new Thread(new ThreadStart(action)).Start();
-                        Thread.Sleep(1000);
+                        ThreadPool.QueueUserWorkItem(delegate(object unused) { action(); });
                     }
                     else
                     {
                         _eventWaitHandle.WaitOne();
                     }
-                }
             }
         }
 
