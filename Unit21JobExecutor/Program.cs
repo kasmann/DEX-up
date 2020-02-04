@@ -13,9 +13,6 @@ namespace Unit21JobExecutor
             jobExecutor.Add(PrintWorking);
             jobExecutor.Add(PrintBye);
             jobExecutor.Add(PrintBye2);
-            jobExecutor.Add(PrintBye3);
-            jobExecutor.Add(PrintBye4);
-            jobExecutor.Add(PrintBye5);
                         
             jobExecutor.Start(3);
             
@@ -37,6 +34,7 @@ namespace Unit21JobExecutor
             for (var i = 0; i < 5; i++)
             {
                 Console.WriteLine($"Метод PrintWorking выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Thread.Sleep(500);
             }
         }
         
@@ -54,27 +52,6 @@ namespace Unit21JobExecutor
             for (var i = 0; i < 5; i++)
             {
                 Console.WriteLine($"Метод PrintBye2 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-            }
-        }
-        
-        private static void PrintBye3()
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"Метод PrintBye3 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-            }
-        }
-        private static void PrintBye4()
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"Метод PrintBye4 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-            }
-        }private static void PrintBye5()
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"Метод PrintBye5 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
             }
         }
     }
