@@ -55,8 +55,8 @@ namespace Unit21JobExecutor
 
         private void Work(object maxConcurrent)
         {
-            ThreadPool.SetMinThreads((int) maxConcurrent, (int) maxConcurrent);
-            ThreadPool.SetMaxThreads(1, 1);
+            ThreadPool.SetMinThreads(1, 1);
+            ThreadPool.SetMaxThreads((int) maxConcurrent, (int) maxConcurrent);
             
             while (true)
             {
