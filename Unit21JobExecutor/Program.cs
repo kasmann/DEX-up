@@ -8,50 +8,56 @@ namespace Unit21JobExecutor
         public static void Main(string[] args)
         {
             JobExecutor jobExecutor = new JobExecutor();
-            
-            jobExecutor.Add(PrintHello);
-            jobExecutor.Add(PrintWorking);
-            jobExecutor.Add(PrintBye);
-            jobExecutor.Add(PrintBye2);
-                        
+
+            jobExecutor.Add(Foo1);
+            jobExecutor.Add(Foo2);
+            jobExecutor.Add(Foo3);
+            jobExecutor.Add(Foo4);
+            jobExecutor.Add(Foo2);
+            jobExecutor.Add(Foo3);
+
             jobExecutor.Start(3);
-            
-            
+
+            Thread.Sleep(4000);
+
+            jobExecutor.Add(Foo4);
+
             jobExecutor.Stop();
-            Thread.Sleep(5000);
         }
 
-        private static void PrintHello()
+        private static void Foo1()
         {
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Метод PrintHello выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-            }
-        }
-        
-        private static void PrintWorking()
-        {
-            for (var i = 0; i < 5; i++)
-            {
-                Console.WriteLine($"Метод PrintWorking выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Console.WriteLine($"Метод Foo1 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
                 Thread.Sleep(500);
             }
         }
-        
-        private static void PrintBye()
+
+        private static void Foo2()
         {
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Метод PrintBye выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-                Thread.Sleep(1000);
+                Console.WriteLine($"Метод Foo2 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Thread.Sleep(500);
             }
         }
-        
-        private static void PrintBye2()
+
+        private static void Foo3()
         {
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < 3; i++)
             {
-                Console.WriteLine($"Метод PrintBye2 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Console.WriteLine($"Метод Foo3 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Thread.Sleep(500);
+            }
+        }
+
+        private static void Foo4()
+        {
+            for (var i = 0; i < 3; i++)
+            {
+                Console.WriteLine($"Метод Foo4 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
+                Thread.Sleep(500);
             }
         }
     }

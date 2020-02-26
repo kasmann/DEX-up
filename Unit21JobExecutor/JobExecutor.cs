@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 
+using System.Security.Permissions;
+
 namespace Unit21JobExecutor
 {
     public class JobExecutor : IJobExecutor
@@ -12,6 +14,7 @@ namespace Unit21JobExecutor
         private readonly Queue<Action> _queue = new Queue<Action>();
         private readonly object _locker = new object();
         private Thread _worker = null;
+        private Semaphore _semaphore;
 
         public JobExecutor()
         {
@@ -55,39 +58,46 @@ namespace Unit21JobExecutor
 
         private void Work(object maxConcurrent)
         {
-            ThreadPool.SetMinThreads(1, 1);
-            ThreadPool.SetMaxThreads((int) maxConcurrent, (int) maxConcurrent);
-            
+            _semaphore = new Semaphore((int)maxConcurrent, (int)maxConcurrent);
+
             while (true)
             {
-                    Action action = null;
+                Action action = null;
 
-                    lock (_locker)
+                lock (_locker)
+                {
+                    if (_queue.Count > 0)
                     {
-                        if (_queue.Count > 0)
-                        {
-                            action = _queue.Dequeue();
-                            Amount = _queue.Count;
-                            if (action == null) return;
-                        }
+                        action = _queue.Dequeue();
+                        Amount = _queue.Count;
+                        if (action == null) return;
                     }
+                }
 
-                    if (action != null)
-                    {
-                        ThreadPool.QueueUserWorkItem(delegate(object unused) { action(); });
-                    }
-                    else
-                    {
-                        _eventWaitHandle.WaitOne();
-                    }
+                if (action != null)
+                {
+                    ThreadPool.QueueUserWorkItem(
+                            (object unused) =>
+                            {
+                                _semaphore.WaitOne();
+                                action();
+                                _semaphore.Release();
+                            });
+                }
+                else
+                {
+                    _eventWaitHandle.WaitOne();
+                }
             }
         }
+
 
         public void Stop()
         {
             Add(null);
             _worker.Join();
             _eventWaitHandle.Close();
+            _semaphore.Dispose();
             Console.WriteLine("\nJob executor stopped.\n-----------------------");
         }
     }
