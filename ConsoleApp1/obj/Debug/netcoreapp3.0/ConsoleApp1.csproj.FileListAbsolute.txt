@@ -1,0 +1,16 @@
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.exe
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.deps.json
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.runtimeconfig.json
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.runtimeconfig.dev.json
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.dll
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\ConsoleApp1.pdb
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\Cyriller.Model.dll
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\Cyriller.Rule.dll
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\Cyriller.dll
+D:\Аня\github\DexCourses\ConsoleApp1\bin\Debug\netcoreapp3.0\Newtonsoft.Json.dll
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.csprojAssemblyReference.cache
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.AssemblyInfoInputs.cache
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.AssemblyInfo.cs
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.csproj.CopyComplete
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.dll
+D:\Аня\github\DexCourses\ConsoleApp1\obj\Debug\netcoreapp3.0\ConsoleApp1.pdb
