@@ -23,6 +23,13 @@ namespace Unit21JobExecutor
             jobExecutor.Add(Foo4);
 
             jobExecutor.Stop();
+            
+            //---------
+
+            jobExecutor.Add(Foo1);
+            jobExecutor.Start();
+            jobExecutor.Stop();
+
         }
 
         private static void Foo1()
