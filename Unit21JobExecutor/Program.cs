@@ -5,6 +5,8 @@ namespace Unit21JobExecutor
 {
     internal static class Program
     {
+        private static  int _count = 3;
+
         public static void Main(string[] args)
         {
             JobExecutor jobExecutor = new JobExecutor();
@@ -22,19 +24,26 @@ namespace Unit21JobExecutor
 
             jobExecutor.Add(Foo4);
 
+            jobExecutor.Add(Foo4);
+            jobExecutor.Add(Foo2);
+            jobExecutor.Add(Foo3);
+
+            jobExecutor.Start(3);
+
             jobExecutor.Stop();
-            
+            jobExecutor.Stop();
+
             //---------
 
-            jobExecutor.Add(Foo1);
-            jobExecutor.Start();
-            jobExecutor.Stop();
+            //jobExecutor.Add(Foo1);
+            //jobExecutor.Start();
+            //jobExecutor.Stop();
 
         }
 
         private static void Foo1()
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _count; i++)
             {
                 Console.WriteLine($"Метод Foo1 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
                 Thread.Sleep(500);
@@ -43,7 +52,7 @@ namespace Unit21JobExecutor
 
         private static void Foo2()
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _count; i++)
             {
                 Console.WriteLine($"Метод Foo2 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
                 Thread.Sleep(500);
@@ -52,7 +61,7 @@ namespace Unit21JobExecutor
 
         private static void Foo3()
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _count; i++)
             {
                 Console.WriteLine($"Метод Foo3 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
                 Thread.Sleep(500);
@@ -61,7 +70,7 @@ namespace Unit21JobExecutor
 
         private static void Foo4()
         {
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < _count; i++)
             {
                 Console.WriteLine($"Метод Foo4 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
                 Thread.Sleep(500);
