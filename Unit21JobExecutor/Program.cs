@@ -9,45 +9,64 @@ namespace Unit21JobExecutor
 
         public static void Main(string[] args)
         {
-            JobExecutor jobExecutor = new JobExecutor();
+            using (JobExecutor jobExecutor = new JobExecutor())
+            {
+                try
+                {
+                    jobExecutor.Stop();
+                }
+                catch (JobExecutorStopped ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            jobExecutor.Add(Foo1);
-            jobExecutor.Add(Foo2);
-            jobExecutor.Add(Foo3);
-            jobExecutor.Add(Foo4);
-            jobExecutor.Add(Foo2);
-            jobExecutor.Add(Foo3);
+                jobExecutor.Add(Foo1);
+                jobExecutor.Add(Foo2);
+                jobExecutor.Add(Foo3);
+                jobExecutor.Add(Foo4);
+                jobExecutor.Add(Foo3);
+                jobExecutor.Add(Foo2);
 
-            jobExecutor.Start(3);
+                try
+                {
+                    jobExecutor.Start(3);
+                }
+                catch (JobExecutorStarted ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            Thread.Sleep(4000);
+                Thread.Sleep(4000);
 
-            jobExecutor.Add(Foo4);
+                jobExecutor.Add(Foo4);
+                jobExecutor.Add(Foo3);
+                jobExecutor.Add(Foo2);
+                jobExecutor.Add(Foo1);
 
-            jobExecutor.Add(Foo4);
-            jobExecutor.Add(Foo2);
-            jobExecutor.Add(Foo3);
+                try
+                {
+                    jobExecutor.Start(2);
+                }
+                catch (JobExecutorStarted ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
 
-            jobExecutor.Start(3);
-
-            jobExecutor.Stop();
-            jobExecutor.Stop();
-
-            //---------
-
-            //jobExecutor.Add(Foo1);
-            //jobExecutor.Start();
-            //jobExecutor.Stop();
-
+                //try
+                //{
+                //    jobExecutor.Stop();
+                //    jobExecutor.Stop();
+                //}
+                //catch (JobExecutorStopped ex)
+                //{
+                //    Console.WriteLine(ex.Message);
+                //}
+            }
         }
 
         private static void Foo1()
         {
-            for (var i = 0; i < _count; i++)
-            {
-                Console.WriteLine($"Метод Foo1 выполняется в потоке {Thread.CurrentThread.ManagedThreadId}");
-                Thread.Sleep(500);
-            }
+            throw new Exception("dropped");
         }
 
         private static void Foo2()

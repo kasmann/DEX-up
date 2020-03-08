@@ -5,22 +5,21 @@ using System.Threading.Tasks;
 
 namespace Unit21JobExecutor
 {
-    public class JobExecutor : IJobExecutor
+    public class JobExecutor : IJobExecutor, IDisposable
     {
-        public int Amount => _queue.Count;       
-        private readonly Queue<Action> _queue = new Queue<Action>();
+        public int Amount => _nqueue.Count;
         private readonly object _locker = new object();
         private bool _isRunning = false;
         private EventWaitHandle _eventWaitHandle = new AutoResetEvent(false);
         private Task _task;
         private Semaphore _semaphore;
+        private readonly NotificationQueue<Action> _nqueue = new NotificationQueue<Action>();
 
         public void Add(Action action)
         {
             lock (_locker)
             {
-                Console.WriteLine($"***Action {action.Method} added***"); 
-                _queue.Enqueue(action);
+                _nqueue.Enqueue(action);
             }
 
             _eventWaitHandle.Set();
@@ -30,7 +29,7 @@ namespace Unit21JobExecutor
         {
             lock (_locker)
             {
-                _queue.Clear();
+                _nqueue.Clear();
             }
         }
 
@@ -42,13 +41,16 @@ namespace Unit21JobExecutor
         {
             if (_isRunning)
             {
-                Console.WriteLine("\nJob executor restarted.\n-----------------------");
-                Stop();
+                throw new JobExecutorStarted("\nJob executor is already started.");
             }
 
             _isRunning = true;
             _eventWaitHandle = new AutoResetEvent(false);
             _task = Task.Run(() => Work(maxConcurrent));
+
+            _nqueue.Notification += ShowNotification;
+            
+            Console.WriteLine("\nJob executor started.");
         }
 
         /// <summary>
@@ -58,20 +60,23 @@ namespace Unit21JobExecutor
         {
             if (!_isRunning)
             {
-                Console.WriteLine("\nJob executor had already stop.\n-----------------------");
-                return;
+                throw new JobExecutorStopped("\nJob executor is already stopped or hasn't been started.");
             }
-            _isRunning = false;
-            _eventWaitHandle.Set();       
-            _task.Wait(); 
 
-            _eventWaitHandle.Close();
-            _task.Dispose();
-            
-            Console.WriteLine("\nJob executor stopped.\n-----------------------");
+            _isRunning = false;
+            _eventWaitHandle.Set();
+            _task.Wait(); 
+                        
+            Console.WriteLine("\nJob executor stopped.");
         }
 
-        
+        public void Dispose()
+        {
+            if (_isRunning) Stop();
+            _eventWaitHandle.Close();
+            _task.Dispose();
+            _nqueue.Notification -= ShowNotification;
+        }        
         
         private void Work(object maxConcurrent)
         {
@@ -83,9 +88,9 @@ namespace Unit21JobExecutor
 
                     lock (_locker)
                     {
-                        if (_queue.Count > 0)
+                        if (_nqueue.Count > 0)
                         {
-                            action = _queue.Dequeue();
+                            action = _nqueue.Dequeue();
                         }
                     }
 
@@ -101,7 +106,7 @@ namespace Unit21JobExecutor
                                 }
                                 catch (Exception ex)
                                 {
-                                    Console.WriteLine(ex.Message);
+                                    Console.WriteLine($"An error occurred while executing the method {action.Method}.\n{ex.Message}");
                                 }
                                 finally
                                 {
@@ -114,9 +119,12 @@ namespace Unit21JobExecutor
                         _eventWaitHandle.WaitOne();
                     }
                 }
-                // _worker = null; // он нам не нужен после заверщения метода, даем возможность GC его удалить, но у тебя завязана на нем логика, попробуй переделать
             }
         }
 
+        private static void ShowNotification(string message)
+        {
+            Console.WriteLine(message);
+        }
     }
 }
